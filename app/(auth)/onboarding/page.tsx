@@ -4,7 +4,6 @@ type Props = {}
 
 const Onboarding = async (props: Props) => {
   const user = await currentUser()
-  console.log(user)
 
   // const userInfo = {}
 
