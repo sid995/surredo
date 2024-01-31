@@ -2,6 +2,28 @@ import ThreadCard from "@/components/cards/ThreadCard";
 import { fetchThreads } from "@/lib/actions/thread.actions";
 import { currentUser } from "@clerk/nextjs"
 
+type ThreadType = {
+  _id: string;
+  parentId: string | null;
+  text: string;
+  author: {
+    name: string;
+    image: string;
+    id: string;
+  };
+  community: {
+    id: string;
+    name: string;
+    image: string;
+  } | null;
+  createdAt: string;
+  children: {
+    author: {
+      image: string;
+    };
+  }[];
+}
+
 export default async function Home() {
   const user = await currentUser()
   const result = await fetchThreads(1, 20)
@@ -15,7 +37,7 @@ export default async function Home() {
         ) : (
           <>
             {
-              result.threads.map((thread) => (
+              result.threads.map((thread: ThreadType) => (
                 <ThreadCard
                   key={thread._id}
                   id={thread._id}
