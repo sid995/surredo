@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Header from "@/components/shared/header";
-import LeftSidebar from "@/components/shared/leftsidebar";
-import RightSidebar from "@/components/shared/rightsidebar";
-import Footer from "@/components/shared/footer";
+import Header from "@/components/shared/Header";
+import LeftSidebar from "@/components/shared/Leftsidebar";
+import RightSidebar from "@/components/shared/Rightsidebar";
+import Footer from "@/components/shared/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
