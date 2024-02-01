@@ -1,6 +1,8 @@
 import ThreadCard from "@/components/cards/ThreadCard";
 import { fetchThreads } from "@/lib/actions/thread.actions";
+import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs"
+import { redirect } from "next/navigation";
 
 type ThreadType = {
   _id: string;
@@ -24,9 +26,23 @@ type ThreadType = {
   }[];
 }
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
   const user = await currentUser()
-  const result = await fetchThreads(1, 20)
+
+  if (!user) return redirect('/sign-in');
+
+  const userInfo = await fetchUser(user.id);
+
+  if (!userInfo?.onboarded) redirect("/onboarding");
+
+  const result = await fetchThreads(
+    searchParams.page ? +searchParams.page : 1,
+    30
+  );
 
   return (
     <div>
