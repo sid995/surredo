@@ -139,6 +139,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ## Future
 
-This app allows:
+Features to be added:
 
 - [ ] Show Replies and Tagged in profile page
+- [ ] Complete link for suggested communities
+- [ ] Complete link for suggested users
