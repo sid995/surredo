@@ -1,6 +1,6 @@
 import ThreadCard from '@/components/cards/ThreadCard'
 import CommentForm from '@/components/forms/CommentForm'
-import { featchThreadById } from '@/lib/actions/thread.actions'
+import { fetchThreadById } from '@/lib/actions/thread.actions'
 import { fetchUser } from '@/lib/actions/user.actions'
 import { currentUser } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
@@ -43,7 +43,7 @@ const Page = async ({ params }: Props) => {
   const userInfo = await fetchUser(user.id)
   if (!userInfo?.onboarded) redirect('/onboarding')
 
-  const thread = await featchThreadById(params.id)
+  const thread = await fetchThreadById(params.id)
 
   return (
     <section className="relative">
