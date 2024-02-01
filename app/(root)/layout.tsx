@@ -31,7 +31,8 @@ export default function RootLayout({
                 {children}
               </div>
             </section>
-            <RightSidebar />
+            {/* Work on functionality and uncomment it */}
+            {/* <RightSidebar /> */}
           </main>
           <Footer />
         </body>
