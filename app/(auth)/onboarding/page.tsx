@@ -1,19 +1,22 @@
 import { AccountProfile } from '@/components/forms/AccountProfile'
+import { fetchUser } from '@/lib/actions/user.actions'
 import { currentUser } from '@clerk/nextjs'
-type Props = {}
+import { redirect } from 'next/navigation'
 
-const Onboarding = async (props: Props) => {
+const Onboarding = async () => {
   const user = await currentUser()
+  if (!user) redirect("/sign-in")
 
-  // const userInfo = {}
+  const userInfo = await fetchUser(user.id)
+  if (userInfo?.onboarded) redirect("/")
 
   const userData = {
     id: user?.id ? user.id : "",
-    objectId: "",
-    username: "",
-    name: "",
-    bio: "",
-    image: user?.imageUrl ? user.imageUrl : "",
+    objectId: userInfo._id,
+    username: userInfo ? userInfo?.username : user?.username,
+    name: userInfo ? userInfo?.name : (user?.firstName || ""),
+    bio: userInfo ? userInfo?.bio : "",
+    image: userInfo ? userInfo?.image : user?.imageUrl,
   }
 
   return (

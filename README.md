@@ -141,6 +141,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 Features to be added:
 
-- [ ] Show Replies and Tagged in profile page
+- [ ] Functionality for Replies and Tagged
 - [ ] Complete link for suggested communities
 - [ ] Complete link for suggested users
+- [ ] Add functionality for liking, reposting and sharing thread
